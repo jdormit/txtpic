@@ -1,7 +1,7 @@
 extern crate rusttype;
 use self::rusttype::{FontCollection, Scale, point, PositionedGlyph};
 
-/// Returns the brightness value between 0 and 255 for the input string.
+/// Returns the brightness value between 0 and 255 for the input character.
 ///
 /// Based on the algorithm described [here](http://mattmik.com/articles/ascii/ascii.html).
 /// The string is rendered in the
@@ -14,14 +14,17 @@ use self::rusttype::{FontCollection, Scale, point, PositionedGlyph};
 /// calculate_string_brightness("c");
 /// ```
 ///
-pub fn calculate_string_brightness(string: &str) -> i32 {
+pub fn calculate_string_brightness(c: char) -> i32 {
+    let string = c.to_string();
     // Generate an in-memory bitmap image of the character
     // Code snippet taken from https://github.com/dylanede/rusttype/blob/master/examples/simple.rs
     let font_data = include_bytes!("Inconsolata-Regular.ttf");
     let collection = FontCollection::from_bytes(font_data as &[u8]);
     let font = collection.into_font().unwrap();
 
-    let height: f32 = 12.4;
+    let height: f32 = 50.0;
+    let width = 50;
+    let pixel_height = height.ceil() as usize;
 
     let scale = Scale { x: height * 2.0, y: height };
 
@@ -32,20 +35,30 @@ pub fn calculate_string_brightness(string: &str) -> i32 {
     let v_metrics = font.v_metrics(scale);
     let offset = point(0.0, v_metrics.ascent);
 
-    // Although this will typically be only one glyph, multiple glyphs are supported
-    let glyphs: Vec<PositionedGlyph> = font.layout(string, scale, offset).collect();
+    let glyphs: Vec<PositionedGlyph> = font.layout(&string, scale, offset).collect();
+    let glyph: PositionedGlyph = glyphs.last().unwrap().standalone();
 
-    let mut num_pixels = 0.0;
-    let mut total_brightness = 0.0;
-    for g in glyphs {
-        // The `v` parameter to the closure in g.draw() is a color value from 0 to 1
-        g.draw(|_, _, v| {
+    // Represents the character as a vector of "pixel coverage" values
+    let mut pixel_data = vec![0.0; width * pixel_height];
+    
+    // The `v` parameter to the closure in glyph.draw() is a "pixel coverage" value from 0 to 1
+    if let Some(bb) = glyph.pixel_bounding_box() {
+        glyph.draw(|x, y, v| {
             let positive_v = if v < 0.0 { 0.0 } else { v };
             let scaled_v = positive_v * 255.0;
-            total_brightness += scaled_v;
-            num_pixels += 1.0;
+            let x = x as i32 + bb.min.x;
+            let y = y as i32 + bb.min.y;
+            if x >= 0 && x < width as i32 &&y >= 0 && y < pixel_height as i32 {
+                let x = x as usize;
+                let y = y as usize;
+                pixel_data[(x + y * width)] = scaled_v;
+            }
         })
     }
+
+    let total_brightness = pixel_data.iter().fold(0.0, |mut sum, &value| {sum += value; sum});
+    let num_pixels = pixel_data.len() as f32;
+    
     if total_brightness == 0.0 || num_pixels == 0.0 {
         0
     }
