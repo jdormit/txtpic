@@ -46,5 +46,10 @@ pub fn calculate_string_brightness(string: &str) -> i32 {
             num_pixels += 1.0;
         })
     }
-    (total_brightness/num_pixels) as i32
+    if total_brightness == 0.0 || num_pixels == 0.0 {
+        0
+    }
+    else {
+        (total_brightness/num_pixels) as i32
+    }
 }
