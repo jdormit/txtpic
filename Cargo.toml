@@ -5,4 +5,5 @@ authors = ["Jeremy Dormitzer <jeremy.dormitzer@gmail.com>"]
 
 [dependencies]
 bmp = "*"
+image = { git = "https://github.com/PistonDevelopers/rust-image" }
 rusttype = "*"
