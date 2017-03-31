@@ -14,7 +14,7 @@ use self::rusttype::{FontCollection, Scale, point, PositionedGlyph};
 /// calculate_string_brightness("c");
 /// ```
 ///
-pub fn calculate_string_brightness(c: char) -> i32 {
+pub fn calculate_character_brightness(c: char) -> i32 {
     let string = c.to_string();
     // Generate an in-memory bitmap image of the character
     // Code snippet taken from https://github.com/dylanede/rusttype/blob/master/examples/simple.rs

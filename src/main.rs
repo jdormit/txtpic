@@ -1,16 +1,8 @@
 extern crate txtpic;
-use txtpic::calculate_string_brightness::calculate_string_brightness;
+use txtpic::character_set::CharacterSet;
 
 fn main() {
-    println!("{}", calculate_string_brightness('M'));
-    println!("{}", calculate_string_brightness('@'));
-    println!("{}", calculate_string_brightness('%'));
-    println!("{}", calculate_string_brightness('#'));
-    println!("{}", calculate_string_brightness('x'));
-    println!("{}", calculate_string_brightness('+'));
-    println!("{}", calculate_string_brightness('='));
-    println!("{}", calculate_string_brightness(':'));
-    println!("{}", calculate_string_brightness('-'));
-    println!("{}", calculate_string_brightness('.'));
-    println!("{}", calculate_string_brightness(' '));
+    let chars = vec!['M', '@', '%', '#', 'x', '+', '=', ':', '-', '.', ' '];
+    let char_set = CharacterSet::new(chars);
+    println!("{:?}", char_set);
 }

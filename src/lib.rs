@@ -1,1 +1,1 @@
-pub mod calculate_string_brightness;
+pub mod character_set;
