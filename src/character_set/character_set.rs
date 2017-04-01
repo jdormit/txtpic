@@ -4,10 +4,12 @@ use super::calculate_character_brightness::calculate_character_brightness;
 
 #[derive(Debug)]
 pub struct CharacterSet {
+    // TODO brightnesses should be u32 not i32 to be more compatible with the image crate
     brightness_table: HashMap<i32, char>,
 }
 
 impl CharacterSet {
+    // TODO generalize this so that chars is any iterable of chars
     pub fn new(chars: Vec<char>) -> CharacterSet {
         let mut set = CharacterSet { brightness_table: HashMap::new() };
         let mut init_brightness = HashMap::new();
@@ -24,5 +26,20 @@ impl CharacterSet {
             set.brightness_table.insert(brightness, c);
         }
         set
+    }
+
+    pub fn get(&self, brightness: i32) -> char {
+        let upper = brightness;
+        let lower = brightness;
+        loop {
+            match self.brightness_table.get(upper) {
+                Some(c) => return c,
+                None => upper += 1
+            }
+            match self.brightness_table.get(lower) {
+                Some(c) => return c,
+                None => lower -= 1
+            }
+        }
     }
 }

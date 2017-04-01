@@ -38,6 +38,13 @@ impl fmt::Display for TextImage {
 }
 
 impl TextImage {
-    fn from(img: DynamicImage, char_set: CharacterSet) -> TextImage {
+    fn new() -> TextImage {
+        TextImage(chars: Vec::new())
+    }
+
+    pub fn from(img: DynamicImage, char_set: CharacterSet) -> TextImage {
         image_to_text(img, char_set)
+    }
+
+    // TODO write setter for characters
 }
