@@ -1,6 +1,4 @@
-use std::vec;
 use std::fmt;
-use std::string;
 use std::ops::{Index,IndexMut};
 use super::image::DynamicImage;
 use ::character_set::CharacterSet;
@@ -10,25 +8,25 @@ pub struct TextImage {
     chars: Vec<Vec<char>>,
 }
 
-impl Index<i32> for TextImage {
+impl Index<usize> for TextImage {
     type Output = Vec<char>;
 
-    fn index(&self, idx: i32) -> Vec<char> {
-        self.chars[idx]
+    fn index(&self, idx: usize) -> &Vec<char> {
+        &self.chars[idx]
     }
 }
  
-impl IndexMut<i32> for TextImage {
-    fn index_mut(&mut self, idx: i32) -> mut Vec<char> {
-        mut self.chars[idx]
+impl IndexMut<usize> for TextImage {
+    fn index_mut(&mut self, idx: usize) -> &mut Vec<char> {
+        &mut self.chars[idx]
     }
 }
 
 impl fmt::Display for TextImage {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         let mut s = String::new();
-        for line in self.chars {
-            for c in line {
+        for line in &self.chars {
+            for &c in line {
                 s.push(c);
             }
             s.push('\n');
@@ -38,13 +36,20 @@ impl fmt::Display for TextImage {
 }
 
 impl TextImage {
-    fn new() -> TextImage {
-        TextImage(chars: Vec::new())
+    pub fn new(width: usize, height: usize) -> TextImage {
+        let mut chars: Vec<Vec<char>> = Vec::new();
+        for _ in 0..height {
+            let line = vec![' '; width];
+            chars.push(line);
+        }
+        TextImage { chars: chars } 
     }
 
     pub fn from(img: DynamicImage, char_set: CharacterSet) -> TextImage {
-        image_to_text(img, char_set)
+        image_to_text(img, char_set, 5, 10)
     }
 
-    // TODO write setter for characters
+    pub fn set_char(&mut self, x: usize, y: usize, c: char) {
+        self.chars[y][x] = c
+    }
 }

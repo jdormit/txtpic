@@ -29,15 +29,15 @@ impl CharacterSet {
     }
 
     pub fn get(&self, brightness: i32) -> char {
-        let upper = brightness;
-        let lower = brightness;
+        let mut upper = brightness;
+        let mut lower = brightness;
         loop {
-            match self.brightness_table.get(upper) {
-                Some(c) => return c,
+            match self.brightness_table.get(&upper) {
+                Some(&c) => return c,
                 None => upper += 1
             }
-            match self.brightness_table.get(lower) {
-                Some(c) => return c,
+            match self.brightness_table.get(&lower) {
+                Some(&c) => return c,
                 None => lower -= 1
             }
         }

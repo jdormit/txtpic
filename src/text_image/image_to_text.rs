@@ -1,34 +1,43 @@
 use super::text_image::TextImage;
-use super::image::DynamicImage;
+use super::image::{DynamicImage, GenericImage, Pixel};
 use character_set::CharacterSet;
 
 pub fn image_to_text(img: DynamicImage, char_set: CharacterSet, target_width_interval: u32, target_height_interval: u32) -> TextImage {
-    let mut text_img = TextImage::new();
     let (img_width, img_height) = img.dimensions();
     let width_interval = closest_interval(target_width_interval, img_width);
     let height_interval = closest_interval(target_height_interval, img_height);
+    let width = img_width / width_interval;
+    let height = img_height / height_interval;
+
+    let mut text_img = TextImage::new(width as usize, height as usize);
 
     // Iterate through each width_interval x height_interval chunk and calculate brightness
-    for height_index in 0..img_height/height_interval {
-        for width_index in 0..img_width/width_interval {
+    for height_index in 0..height {
+        for width_index in 0..width {
+            let mut total_brightness: u32 = 0;
             for y in height_interval * height_index..height_interval * (height_index + 1) {
                 for x in width_interval * width_index..width_interval * (width_index + 1) {
-                    let [r, g, b] = img.get_pixel(x, y).to_rgb().data;
-                    let brightness = (r + g + b) / 3;
-                    let c = char_set.get(brightness as i32)
+                    let rgb  = img.get_pixel(x, y).to_rgb().data;
+                    let (r, g, b) = (rgb[0] as u32, rgb[1] as u32, rgb[2] as u32);
+                    total_brightness += (r + g + b) / 3;
                 }
             }
+            let area = width_interval * height_interval;
+            let brightness = total_brightness as f32 / area as f32;
+            let c = char_set.get(brightness as i32);
+            text_img.set_char(width_index as usize, height_index as usize, c);
         }
     }
+    text_img
 }
 
 // Calculates the interval closest to target_interval such that img_size % target_interval == 0
 fn closest_interval(target_interval: u32, img_size: u32) -> u32 {
     // Naive approach
-    // TODO implement a timeout so this doesn't loop forever
+    // TODO implement a timeout so this doesn't loop forever if no suitable values exist
     let mut upper_bound = target_interval;
     let mut lower_bound = target_interval;
-    let mut res: u32;
+    let res: u32;
     loop {
         if img_size % upper_bound == 0 {
             res = upper_bound;
@@ -38,8 +47,8 @@ fn closest_interval(target_interval: u32, img_size: u32) -> u32 {
             res = lower_bound;
             break;
         }
-        upper_bound++;
-        lower_bound--;
+        upper_bound += 1;
+        lower_bound -= 1;
     }
     res
 }
