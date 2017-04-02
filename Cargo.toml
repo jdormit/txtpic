@@ -3,6 +3,14 @@ name = "txtpic"
 version = "0.1.0"
 authors = ["Jeremy Dormitzer <jeremy.dormitzer@gmail.com>"]
 
+[lib]
+name = "txtpic_lib"
+path = "src/lib.rs"
+
+[[bin]]
+name = "txtpic"
+path = "src/main.rs"
+
 [dependencies]
 bmp = "*"
 image = { git = "https://github.com/PistonDevelopers/rust-image" }

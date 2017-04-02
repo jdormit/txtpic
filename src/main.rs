@@ -1,14 +1,11 @@
-extern crate txtpic;
+extern crate txtpic_lib;
 extern crate image;
 extern crate clap;
 use clap::{App, Arg};
 use std::path::Path;
-use txtpic::character_set::CharacterSet;
-use txtpic::text_image::TextImage;
+use txtpic_lib::character_set::CharacterSet;
+use txtpic_lib::text_image::TextImage;
 
-/// The `txtpic` command
-/// 
-/// Run `txtpic --help` or check out [the readme](https://github.com/jdormit/txtpic) for usage.
 fn main() {
     let matches = App::new("txtpic")
                         .version(env!("CARGO_PKG_VERSION"))
