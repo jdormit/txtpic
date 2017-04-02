@@ -8,16 +8,29 @@ use txtpic::text_image::TextImage;
 
 fn main() {
     let matches = App::new("txtpic")
-                        .version("1.0")
+                        .version("1.0.0")
                         .author("Jeremy Dormitzer <jeremy.dormitzer@gmail.com>")
                         .about("Generates text representations of images")
                         .arg(Arg::with_name("IMAGE")
                              .help("The input image")
                              .required(true)
                              .index(1))
+                        .arg(Arg::with_name("width")
+                             .short("w")
+                             .long("width")
+                             .takes_value(true)
+                             .value_name("WIDTH")
+                             .help("An approximate width value for the result")
+                             .validator(|arg: String| {
+                                 match arg.parse::<u32>() {
+                                     Err(_) => Err("Width must be a positive number".to_string()),
+                                     Ok(_) => Ok(())
+                                 }
+                             }))
                         .arg(Arg::with_name("char_set")
                              .short("c")
                              .long("character-set")
+                             .use_delimiter(false)
                              .takes_value(true)
                              .value_name("CHARACTERS")
                              .help("An alternate character set to use."))
@@ -37,6 +50,11 @@ fn main() {
         None => CharacterSet::preset_small()
     };
 
-    let txt_img = TextImage::from(img, char_set);
+    let width = match matches.value_of("width") {
+        Some(width) => width.parse::<u32>().unwrap(),
+        None => 80 as u32
+    };
+
+    let txt_img = TextImage::from(img, char_set, width);
     println!("{}", txt_img);
 }

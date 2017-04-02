@@ -2,10 +2,10 @@ use super::text_image::TextImage;
 use super::image::{DynamicImage, GenericImage, Pixel};
 use character_set::CharacterSet;
 
-pub fn image_to_text(img: DynamicImage, char_set: CharacterSet, target_width_interval: u32, target_height_interval: u32) -> TextImage {
+pub fn image_to_text(img: DynamicImage, char_set: CharacterSet, target_width: u32) -> TextImage {
     let (img_width, img_height) = img.dimensions();
-    let width_interval = closest_interval(target_width_interval, img_width);
-    let height_interval = closest_interval(target_height_interval, img_height);
+    let width_interval = closest_interval(img_width / target_width, img_width);
+    let height_interval = width_interval * 2;
     let width = img_width / width_interval;
     let height = img_height / height_interval;
 

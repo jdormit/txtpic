@@ -45,8 +45,8 @@ impl TextImage {
         TextImage { chars: chars } 
     }
 
-    pub fn from(img: DynamicImage, char_set: CharacterSet) -> TextImage {
-        image_to_text(img, char_set, 5, 10)
+    pub fn from(img: DynamicImage, char_set: CharacterSet, target_width: u32) -> TextImage {
+        image_to_text(img, char_set, target_width)
     }
 
     pub fn set_char(&mut self, x: usize, y: usize, c: char) {
