@@ -8,7 +8,7 @@ You'll need [Cargo](http://doc.crates.io) to install `txtpic`.
 
 ## Usage
 
-    txtpic 0.1.0
+    txtpic 1.0.0
     Jeremy Dormitzer <jeremy.dormitzer@gmail.com>
     Generates text representations of images
 
