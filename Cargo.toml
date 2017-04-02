@@ -14,7 +14,7 @@ name = "txtpic"
 path = "src/main.rs"
 
 [dependencies]
-bmp = "*"
-image = "*"
-rusttype = "*"
-clap = "*"
+bmp = "0.2.0"
+image = "0.12.3"
+rusttype = "0.2.1"
+clap = "2.22.2"
