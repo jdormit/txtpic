@@ -2,6 +2,7 @@ use super::text_image::TextImage;
 use super::image::{DynamicImage, GenericImage, Pixel};
 use character_set::CharacterSet;
 
+/// Converts an image to a TextImage using the given character set
 pub fn image_to_text(img: DynamicImage, char_set: CharacterSet, target_width: u32) -> TextImage {
     let (img_width, img_height) = img.dimensions();
     let width_interval = closest_interval(img_width / target_width, img_width);
@@ -34,7 +35,6 @@ pub fn image_to_text(img: DynamicImage, char_set: CharacterSet, target_width: u3
 // Calculates the interval closest to target_interval such that img_size % target_interval == 0
 fn closest_interval(target_interval: u32, img_size: u32) -> u32 {
     // Naive approach
-    // TODO implement a timeout so this doesn't loop forever if no suitable values exist
     let mut upper_bound = target_interval;
     let mut lower_bound = target_interval;
     let res: u32;

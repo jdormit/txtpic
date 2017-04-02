@@ -6,6 +6,9 @@ use std::path::Path;
 use txtpic::character_set::CharacterSet;
 use txtpic::text_image::TextImage;
 
+/// The `txtpic` command
+/// 
+/// Run `txtpic --help` or check out [the readme](https://github.com/jdormit/txtpic) for usage.
 fn main() {
     let matches = App::new("txtpic")
                         .version(env!("CARGO_PKG_VERSION"))
