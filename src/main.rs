@@ -33,7 +33,7 @@ fn main() {
                              .use_delimiter(false)
                              .takes_value(true)
                              .value_name("CHARACTERS")
-                             .help("An alternate character set to use."))
+                             .help("An alternate character set to use"))
                         .get_matches();
     
     let img_path = matches.value_of("IMAGE").unwrap();
