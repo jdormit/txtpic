@@ -8,7 +8,7 @@ use txtpic::text_image::TextImage;
 
 fn main() {
     let matches = App::new("txtpic")
-                        .version("1.0.0")
+                        .version(env!("CARGO_PKG_VERSION"))
                         .author("Jeremy Dormitzer <jeremy.dormitzer@gmail.com>")
                         .about("Generates text representations of images")
                         .arg(Arg::with_name("IMAGE")
