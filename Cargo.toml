@@ -7,3 +7,4 @@ authors = ["Jeremy Dormitzer <jeremy.dormitzer@gmail.com>"]
 bmp = "*"
 image = { git = "https://github.com/PistonDevelopers/rust-image" }
 rusttype = "*"
+clap = "*"

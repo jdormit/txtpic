@@ -28,6 +28,11 @@ impl CharacterSet {
         set
     }
 
+    pub fn from(string: &str) -> CharacterSet {
+        let chars: Vec<char> = string.chars().collect();
+        CharacterSet::new(chars)
+    }
+
     pub fn get(&self, brightness: i32) -> char {
         let mut upper = brightness;
         let mut lower = brightness;
@@ -41,5 +46,17 @@ impl CharacterSet {
                 None => lower -= 1
             }
         }
+    }
+
+    pub fn preset_small() -> CharacterSet {
+        CharacterSet::from("@%#x+=:-. ")
+    }
+
+    pub fn preset_medium() -> CharacterSet {
+        CharacterSet::from("$@B%8&WM#*oahkbdpqwmZO0QLCJUYXzcvunxrjft/\\|()1{}[]?-_+~<>i!lI;:,\"^`'. ")
+    }
+
+    pub fn preset_large() -> CharacterSet {
+        CharacterSet::from("abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890!@#$%^&*()-_=+[{]}\\|;:'\",.<>/?")
     }
 }
