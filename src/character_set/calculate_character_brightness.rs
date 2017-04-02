@@ -7,13 +7,6 @@ use self::rusttype::{FontCollection, Scale, point, PositionedGlyph};
 /// The string is rendered in the
 /// [Inconsolata font](http://www.levien.com/type/myfonts/inconsolata.html) for the
 /// purposes of determining the brightness.
-///
-/// # Examples
-///
-/// ```
-/// calculate_string_brightness("c");
-/// ```
-///
 pub fn calculate_character_brightness(c: char) -> i32 {
     let string = c.to_string();
     // Generate an in-memory bitmap image of the character
