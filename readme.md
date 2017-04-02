@@ -37,7 +37,7 @@ Converting it with:
 
 Gives the output:
 
-```
+<pre style="color: white; background-color: #222">
 ==xxxxxxxxxx==xxx==x==+==---+++-=+-.:---:-:-+-.:-++----+==+==xxxxxxxxx==x===xxxxxxxx==============++
 ==xxxxxxxxx=====xx====++++++++--=+:.-+--:--++--:-+++++-++++++==xxxxxxx=++++=xxxxxxxx===============+
 =xxxxxxxxxx=====xxxxx===+++++++++++:+=+-:--+x=+--++==++-+=+======+======+--==+=xxxxx====x===========
@@ -71,4 +71,4 @@ Gives the output:
 +++++=++--+-::--+++++-+==+==++++++++-+-+++===xxxxxx=======xxxxxxxxx=+++----::-+==+==xxxxx=xxxxxxxxxx
 +++==++++++-+++--+----=+=++++++++=+++++++============++===+=xxxxxxx==++--::::-++===xxxxxxxxxxxxxxxxx
 ++==++-+---+++-------+++--+=++++++==++=++=++====x==x=xxxxxxxxxxxxxx=++--------++++x=xxxxxxxxxxxxxxxx
-```
+</pre>
