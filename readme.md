@@ -35,40 +35,6 @@ Converting it with:
 
     $ txtpic --width 100 cat.jpg
 
-Gives the output:
+Gives the [output](./example/cat.txt):
 
-<pre style="color: white; background-color: #222">
-==xxxxxxxxxx==xxx==x==+==---+++-=+-.:---:-:-+-.:-++----+==+==xxxxxxxxx==x===xxxxxxxx==============++
-==xxxxxxxxx=====xx====++++++++--=+:.-+--:--++--:-+++++-++++++==xxxxxxx=++++=xxxxxxxx===============+
-=xxxxxxxxxx=====xxxxx===+++++++++++:+=+-:--+x=+--++==++-+=+======+======+--==+=xxxxx====x===========
-=xxxxxx==+===xxxxxxxx=+++++++++=+---+x=-:-+=x+--+=x++++++++====+++=++++----+--==xxx=====x===========
-=======x=++=xxxxx==++++++=++++++==-:-xx-::+xx+:-=xx+-+++===========++-+++-:---+=xx==================
-===++++=+---===+++++===++=+++--+xx=+-==---+xx+.-xxx=+---xxxxx====x=+++--++-::--+====================
-++++++-++-:-+++++++========++-:-+xxx+-x+--+xx-.+xxxx+:-+=xx=====+===++++-+++----==============++++++
---++--++--:-++++++====x===xx=+:.+xxx-:+=-:-+x+:+xxxx+:-+x=++=========++++++=++=+==xx================
--+--+++-+---+++=++=x==+++++=x+-.:xxx+--=---+=+-+=xxx=--xx=xxx==xxxx=+++++++==+====xxxxxxx===========
-+--++++++++++++====xx==+++++=x+..xxxx=-=+---++++-xxxx++x=++++==++=++++++++=+=++++==xxxxxxxxxxxxxxxxx
---+++-++===========xxxx====xxxx--xx==+-=+++-++==++=xxxx=++:+xx%x+-=+++++++--++=++=xxxxxxxxxxxxxxxxxx
-+++++-++++=x====+==x==-+xx=--+=x==x=+-+++++++++x==xxxxxxx=+-xxxx+-=x=+==++=+--+===xxxxxxxxxxxxxxxxxx
-+++-+-==++=x====++++==+xxxx--=xxxxxx=+=+=++++=+===x%=-xxxxxxxxx+-=x=+++++=xx=+-+==xxxxxxxxxxxxxxxxxx
-+++---+=+++=++xxxxxxxx-=xxxxxxxxx+:xxx===+++=+====xx=.:-=xx==+--=x+----====xx=====xx%%%%%%%%%%%%%%%%
-+++---++==++========xx=-+xxxxxxx+..=xx==+++++++====x=+------++++-----+===xxxxxxx=xxx%%%%%%%%%%%%%%%%
-++++--+==---=xx===+++=xx=++++--:-++++=+===========+----+==+-::----++===xxxxxxx=+=xxxxxxxxxxxxxxxxxxx
-++-----+====xx==+++++++--+++===xx=--::+xxxx===xx===+:..--::-----+++==xx=+---++-+xxxxxxxxxxxxxxxxxxxx
-++++-++==xxxxxxxxxx==++-+--------+-..-+==xxx==xx==+=-::------+++++=xxxxxx====+=xxxx%%%%%%%%%%%%%%%%%
-+-++--+++++xxxxxxxx======+++--+-+--::+++=========+-+++---+++++++=xx=xxxx=====xxxxxxxxxxxxxxxxxxxxx%%
-++----++++++++++++=xxxxxx=++++++++--+---+=======++--+++-++==+==xxxxxxx====xxxx%%%%%%%%%%%%%%%%%%%xxx
-+==++--+==++++===+=====xxx======++++=+---====+=++=+--+====+====xxxxxx===xxxxxxxxx%%%%%%%%%%%%%%%%%%%
-+===++++++==++++==x==xxxxxxxxx=====xx=--+=++++++++++-=xxx=++=xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
--+=++++++++====+++++===xxxxxxx=++=xxxx=+=x=======+=+xxxx+xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
----+++++++-++============xxxxxxx====xxxxx=+-=x==-=xxxxxx===xxxxxxxxxxxxxxxxx=xxxxxxxxxxxxxxxxxxxxxxx
-+--++++----++=x=====xx===xxxxxxxx===xxxxxxx==+-+=xxxxxxxxxxxxxxxxxxxxxxx=====xxxx==xxxxxxxxxxxxxxxxx
-+++--+++++=++-+=x=xxxxx=====xxxxxxxxxxxxxxxxx+-xxxxxxxxxxxxxxxxxxxxxxxx=++=+++++++=xxxxxxxxxxxxxxxxx
-=++++---++++++++======+===xxxxxxxxxxxxxxxxxxx=-+xxxxxxxxxxxxxxxxx=xxxxx===++++---+======xxxxxxxxxxxx
-===++----+==+++++++++==xxxx=xxxxxx=xxxxxxxxxxxxxxxxxxxx%xxxxxxxxxxxxxx===++++---++======+=xxxxxxxxxx
-++++=+-+-----+++++++===+++=xxxxx==+=+=xxx%xxxxxxxxxxxxxxxxxxxxxxxxxxx==++++++---+==x======xxxxxxxxxx
-+++-+++--:------++===+--+=++=+++-+-+---++==xx%%xx%%xxxxxxxxxxxxxxxxx==+++----++++==xxxxx=+xxxxxxxxxx
-+++++=++--+-::--+++++-+==+==++++++++-+-+++===xxxxxx=======xxxxxxxxx=+++----::-+==+==xxxxx=xxxxxxxxxx
-+++==++++++-+++--+----=+=++++++++=+++++++============++===+=xxxxxxx==++--::::-++===xxxxxxxxxxxxxxxxx
-++==++-+---+++-------+++--+=++++++==++=++=++====x==x=xxxxxxxxxxxxxx=++--------++++x=xxxxxxxxxxxxxxxx
-</pre>
+![Text cat](./example/text-cat.png)
