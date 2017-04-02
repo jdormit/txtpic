@@ -2,6 +2,8 @@
 name = "txtpic"
 version = "1.0.0"
 authors = ["Jeremy Dormitzer <jeremy.dormitzer@gmail.com>"]
+description = "Generate Unicode art from images"
+license = "MIT"
 
 [lib]
 name = "txtpic_lib"
