@@ -9,9 +9,8 @@ pub struct CharacterSet {
 }
 
 impl CharacterSet {
-    // TODO generalize this so that chars is any iterable of chars
     /// Generates a new CharacterSet containing `chars`
-    pub fn new(chars: Vec<char>) -> CharacterSet {
+    pub fn new<T>(chars: T) -> CharacterSet where T: IntoIterator<Item=char> {
         let mut set = CharacterSet { brightness_table: HashMap::new() };
         let mut init_brightness = HashMap::new();
         let mut min = i32::MAX;
