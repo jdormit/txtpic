@@ -3,6 +3,9 @@ use super::image::{DynamicImage, GenericImage, Pixel};
 use character_set::CharacterSet;
 
 /// Converts an image to a TextImage using the given character set
+/// 
+/// `target_width` is a goal width - the actual width will be a value close to
+/// `target_width` that preserves the image's aspect ratio
 pub fn image_to_text(img: DynamicImage, char_set: CharacterSet, target_width: u32) -> TextImage {
     let (img_width, img_height) = img.dimensions();
     let width_interval = closest_interval(img_width / target_width, img_width);
