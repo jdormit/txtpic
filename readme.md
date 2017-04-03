@@ -22,8 +22,7 @@ You'll need [Cargo](http://doc.crates.io) to install `txtpic`.
 
     OPTIONS:
     -c, --character-set <CHARACTERS>    An alternate character set to use
-    -p, --preset <PRESET NAME>          A preset character set to use [default: small]  [values: small,
-    medium, large]
+    -p, --preset <PRESET NAME>          A preset character set to use [default: small]  [values: small, medium, large]
     -w, --width <WIDTH>                 An approximate width value for the result [default: 80]
 
     ARGS:
