@@ -11,6 +11,13 @@ pub struct CharacterSet {
 
 impl CharacterSet {
     /// Generates a new CharacterSet containing `chars`
+    /// 
+    /// # Example
+    /// ```
+    /// use txtpic_lib::character_set::CharacterSet;
+    /// 
+    /// let char_set = CharacterSet::new("M ".chars());
+    /// ```
     pub fn new<T>(chars: T) -> CharacterSet where T: IntoIterator<Item=char> {
         let mut set = CharacterSet { brightness_table: HashMap::new() };
         let mut init_brightness = HashMap::new();
@@ -29,13 +36,33 @@ impl CharacterSet {
         set
     }
 
-    /// Generates a new character set from the string `string`
+    /// Convenience method to generate a new CharacterSet from the string `string`
+    ///
+    /// # Example
+    /// ```
+    /// use txtpic_lib::character_set::CharacterSet;
+    ///
+    /// let char_set = CharacterSet::new("M ".chars());
+    /// ```
     pub fn from(string: &str) -> CharacterSet {
-        let chars: Vec<char> = string.chars().collect();
-        CharacterSet::new(chars)
+        CharacterSet::new(string.chars())
+    }
+
+    /// Returns a new CharacterSet with the specified brightness map
+    fn with_brightness_table(brightness_table: HashMap<i32, char>) -> CharacterSet {
+        CharacterSet { brightness_table: brightness_table }
     }
 
     /// Returns the character with brightness closest to `brightness`
+    /// 
+    /// # Example
+    /// ```
+    /// use txtpic_lib::character_set::CharacterSet;
+    ///
+    /// let char_set = CharacterSet::from("M ");
+    /// let c = char_set.get(0);
+    /// assert_eq!(c, ' ');
+    /// ```
     pub fn get(&self, brightness: i32) -> char {
         let mut upper = brightness;
         let mut lower = brightness;
@@ -49,6 +76,29 @@ impl CharacterSet {
                 None => lower -= 1
             }
         }
+    }
+
+    /// Returns a new CharacterSet with inverted brightness values
+    ///
+    /// "Inverted" means that brightness values that were previously high are now low, and
+    /// vice-versa. This is useful for generate text images that look good as black text on
+    /// a white background
+    ///
+    /// # Example
+    /// ```
+    /// use txtpic_lib::character_set::CharacterSet;
+    ///
+    /// let char_set = CharacterSet::from("M ").invert();
+    /// let c = char_set.get(0);
+    /// assert_eq!(c, 'M');
+    /// ```
+    pub fn invert(&self) -> CharacterSet {
+        let mut inverted_brightness_table = HashMap::new();
+        for (brightness, &character) in &self.brightness_table {
+            let inverted_brightness = (brightness - 255).abs();
+            inverted_brightness_table.insert(inverted_brightness, character);
+        }
+        CharacterSet::with_brightness_table(inverted_brightness_table)
     }
 
     /// Returns a predefined CharacterSet with few characters
