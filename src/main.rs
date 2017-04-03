@@ -34,6 +34,10 @@ fn main() {
                              .takes_value(true)
                              .value_name("CHARACTERS")
                              .help("An alternate character set to use"))
+                        .arg(Arg::with_name("invert")
+                             .short("i")
+                             .long("invert")
+                             .help("Invert the result to make it suitable for black text on a white background"))
                         .get_matches();
     
     let img_path = matches.value_of("IMAGE").unwrap();
@@ -44,10 +48,20 @@ fn main() {
             std::process::exit(1);
         }
     };
-    
+
     let char_set = match matches.value_of("char_set") {
-        Some(chars) => CharacterSet::from(&chars),
-        None => CharacterSet::preset_small()
+        Some(chars) => if matches.is_present("invert") { 
+            CharacterSet::from(&chars).invert()
+        }
+        else {
+            CharacterSet::from(&chars)
+        },
+        None => if matches.is_present("invert") {
+            CharacterSet::preset_small().invert()
+        }
+        else {
+            CharacterSet::preset_small()
+        }
     };
 
     let width = match matches.value_of("width") {
