@@ -20,6 +20,7 @@ fn main() {
                              .long("width")
                              .takes_value(true)
                              .value_name("WIDTH")
+                             .default_value("80")
                              .help("An approximate width value for the result")
                              .validator(|arg: String| {
                                  match arg.parse::<u32>() {
@@ -38,6 +39,14 @@ fn main() {
                              .short("i")
                              .long("invert")
                              .help("Invert the result to make it suitable for black text on a white background"))
+                        .arg(Arg::with_name("preset")
+                             .short("p")
+                             .long("preset")
+                             .value_name("PRESET NAME")
+                             .conflicts_with("char_set")
+                             .possible_values(&["small", "medium", "large"])
+                             .default_value("small")
+                             .help("A preset character set to use"))
                         .get_matches();
     
     let img_path = matches.value_of("IMAGE").unwrap();
@@ -49,25 +58,19 @@ fn main() {
         }
     };
 
-    let char_set = match matches.value_of("char_set") {
-        Some(chars) => if matches.is_present("invert") { 
-            CharacterSet::from(&chars).invert()
-        }
-        else {
-            CharacterSet::from(&chars)
-        },
-        None => if matches.is_present("invert") {
-            CharacterSet::preset_small().invert()
-        }
-        else {
-            CharacterSet::preset_small()
+    let mut char_set = match matches.value_of("char_set") {
+        Some(chars) => CharacterSet::from(&chars),
+        None => match matches.value_of("preset").unwrap() {
+            "small" => CharacterSet::preset_small(),
+            "medium" => CharacterSet::preset_medium(),
+            "large" => CharacterSet::preset_large(),
+            &_ => panic!("Unknown preset: {}", matches.value_of("preset").unwrap())
         }
     };
 
-    let width = match matches.value_of("width") {
-        Some(width) => width.parse::<u32>().unwrap(),
-        None => 80 as u32
-    };
+    if matches.is_present("invert") { char_set = char_set.invert(); };
+
+    let width = matches.value_of("width").unwrap().parse::<u32>().unwrap();
 
     let txt_img = TextImage::from(img, char_set, width);
     println!("{}", txt_img);
