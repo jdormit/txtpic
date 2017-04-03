@@ -3,6 +3,7 @@ use std::i32;
 use super::calculate_character_brightness::calculate_character_brightness;
 
 #[derive(Debug)]
+#[derive(PartialEq)]
 /// A CharacterSet represents a set of characters mapped to brightness values
 pub struct CharacterSet {
     brightness_table: HashMap<i32, char>,
