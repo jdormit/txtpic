@@ -1,6 +1,6 @@
 [package]
 name = "txtpic"
-version = "1.2.1"
+version = "1.2.2"
 authors = ["Jeremy Dormitzer <jeremy.dormitzer@gmail.com>"]
 description = "Generate Unicode art from images"
 repository = "https://github.com/jdormit/txtpic"
