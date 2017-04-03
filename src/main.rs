@@ -7,6 +7,12 @@ use txtpic_lib::character_set::CharacterSet;
 use txtpic_lib::text_image::TextImage;
 
 fn main() {
+    let additional_help = "\
+Note: the --width option attempts find a width close to the target width that preserves the \
+aspect ratio of the original image. For certain images, there may be only one or two valid \
+widths within a reasonable range, so the --width option may not appear to have an effect. In this \
+case, try extremely high or extremely low width values to affect the output.
+";
     let matches = App::new("txtpic")
                         .version(env!("CARGO_PKG_VERSION"))
                         .author("Jeremy Dormitzer <jeremy.dormitzer@gmail.com>")
@@ -47,6 +53,7 @@ fn main() {
                              .possible_values(&["small", "medium", "large"])
                              .default_value("small")
                              .help("A preset character set to use"))
+                        .after_help(additional_help)
                         .get_matches();
     
     let img_path = matches.value_of("IMAGE").unwrap();
