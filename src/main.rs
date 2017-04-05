@@ -80,5 +80,5 @@ case, try extremely high or extremely low width values to affect the output.
     let width = matches.value_of("width").unwrap().parse::<u32>().unwrap();
 
     let txt_img = TextImage::from(img, char_set, width);
-    println!("{}", txt_img);
+    print!("{}", txt_img);
 }
