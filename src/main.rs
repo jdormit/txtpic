@@ -50,7 +50,7 @@ case, try extremely high or extremely low width values to affect the output.
                              .long("preset")
                              .value_name("PRESET NAME")
                              .conflicts_with("char_set")
-                             .possible_values(&["small", "medium", "large"])
+                             .possible_values(&["small", "medium", "large", "emoji"])
                              .default_value("small")
                              .help("A preset character set to use"))
                         .after_help(additional_help)
@@ -71,6 +71,7 @@ case, try extremely high or extremely low width values to affect the output.
             "small" => CharacterSet::preset_small(),
             "medium" => CharacterSet::preset_medium(),
             "large" => CharacterSet::preset_large(),
+            "emoji" => CharacterSet::preset_emoji(),
             &_ => panic!("Unknown preset: {}", matches.value_of("preset").unwrap())
         }
     };

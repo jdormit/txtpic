@@ -8,7 +8,7 @@ You'll need [Cargo](http://doc.crates.io) to install `txtpic`.
 
 ## Usage
 
-    txtpic 1.2.1
+    txtpic 1.2.3
     Jeremy Dormitzer <jeremy.dormitzer@gmail.com>
     Generates text representations of images
 
@@ -22,16 +22,16 @@ You'll need [Cargo](http://doc.crates.io) to install `txtpic`.
 
     OPTIONS:
     -c, --character-set <CHARACTERS>    An alternate character set to use
-    -p, --preset <PRESET NAME>          A preset character set to use [default: small]  [values: small, medium, large]
+    -p, --preset <PRESET NAME>          A preset character set to use [default: small]  [values: small, medium, large, emoji]
     -w, --width <WIDTH>                 An approximate width value for the result [default: 80]
 
     ARGS:
     <IMAGE>    The input image
 
-    Note: the --width option attempts find a width close to the target width that preserves the 
-    aspect ratio of the original image. For certain images, there may be only one or two valid 
-    widths within a reasonable range, so the --width option may not appear to have an effect. In 
-    this case, try extremely  high or extremely low width values to affect the output.
+    Note: the --width option attempts find a width close to the target width that preserves 
+    the aspect ratio of the original image. For certain images, there may be only one or two 
+    valid widths within a reasonable range, so the --width option may not appear to have an effect.
+    In this case, try extremely high or extremely low width values to affect the output.
 
 ## Example
 Here is an adorable cat.

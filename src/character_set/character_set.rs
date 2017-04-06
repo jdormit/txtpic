@@ -115,4 +115,8 @@ impl CharacterSet {
     pub fn preset_large() -> CharacterSet {
         CharacterSet::from("abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890!@#$%^&*()-_=+[{]}\\|;:'\",.<>/?")
     }
+
+    pub fn preset_emoji() -> CharacterSet {
+        CharacterSet::from("☺☻✌✍✎✉☀☃☁☂★☆☮☯〠☎☏♕☑☒✓✗¢€£❤❣❦♣♤♥♦♧►❝❞☜☝☞☟☚☛☹త☣☠")
+    }
 }
